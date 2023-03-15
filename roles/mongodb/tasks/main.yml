@@ -1,0 +1,35 @@
+---
+# tasks file for mongodb
+- name: Install MongoDB
+  become: true
+  apt:
+    name: mongodb
+    state: present
+
+- name: Start MongoDB service
+  become: true
+  service:
+    name: mongodb
+    state: started
+
+- name: Copy MongoDB configuration file
+  become: true
+  template:
+    src: mongod.conf.j2
+    dest: /etc/mongodb.conf
+  notify:
+    - restart mongodb
+
+- name: Ensure MongoDB log directory exists
+  become: true
+  file:
+    path: /var/log/mongodb
+    state: directory
+    mode: 0755
+
+- name: Ensure MongoDB service is restarted
+  become: true
+  service:
+    name: mongodb
+    state: restarted
+  when: mongodb_port.changed or mongodb_bind_ip.changed

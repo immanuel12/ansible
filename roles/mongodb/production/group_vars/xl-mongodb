@@ -1,0 +1,9 @@
+app_config:
+  bastion: 
+    xlbot_adduser: yes
+    disabled_password: yes
+    users_add:
+      - username: immanuel
+        name: Immanuel Sianturi
+        password: $6$rounds=656000$ky0MylhctYOnuExT$3YhABVm6Uv5BpLXeZtCwf3BbOuYWWMYtxSVejUQwBTi64ZnjVFImLQ04WGwdTDFyxGQ4Cd9d07l7DwdYkO8EM0
+        groups: wheel
